@@ -1,0 +1,90 @@
+*QraphQL: 
+ - Query: Fetch data từ Server -> Client (Get) (Các Query chạy song song)
+ - variable: là param chuyền vào
+ - Mutations: để sửa data từ Client -> Server (Post) (mutations chạy nối tiếp nhau - khi gửi e Mutations trong 1 request)
+ - Fragment: khi request có Methods cùng query đến các Fields (trường), sd Fragment để tách để có thể tái sd
+ - Directives: Đặt điều kiện xem Fields này có được hiể nthij hay không
+	@include(if: $withFriends) //true - hiển thị kq
+	@skip(if: Boolean) // true - Skip Field
+ - inile Fragment: sd Để yêu cầu Fields bên trong "Concrete type"
+ 
+ - Union Types: giống với Interface, nhưng n k xđ đc bất kỳ Fields chung nào giữa các Types
+ 
+ -----------------------------------------------------------------------------------------------------------------------------------------
+ *Webpack:
+  - Quản lý các Module và chỉ load khi dùng đến
+  - tăng performent project
+  - Đóng gói các file code thành 1 file duy nhất. sd Loader để biên dịch các loại file khác nhau
+  - Biến các tài nguyên tĩnh (images, css) -> 1 module
+  - Chuyển đổi các sourse code: jsx, less, scss -> js,css, ES6 -> ES5 thông qua Babel (Cross Browser)
+  - Đóng gói Module -> giải quyết vấn đề đường dẫn (../../../...)
+  - Code Splitting: chia code thành nhiều module nhỏ, phân tách code or library giống nhau ra thành 1 file riêng, kiểm soát mức độ ưu tiên, giúp tăng performent
+	Conditions new chunks: 
+	 + can be shared or modules are from the node_modules folder
+	 + bigger than 20kb
+	 + 
+  +Ưu điểm:
+    - Phân tách code
+	- Cải thiện performent
+	- Đóng gói
+	- Chỉ load module khi cần
+  + Nhược điểm:
+    - Người mới khó tiếp cận
+  
+  -----------------------------------------------------------------------------------------------------------------------------------------
+ *Babel:
+  - Babel-loader: cho phép babel hđ với webpack
+  - @babel/core: là core của babel, output ra 1 số file
+  - @babel/preset-env: là babel preset cho mỗi env. Example environments: chrome, opera, edge, firefox, safari, ie, ios, android, node, electron
+  
+  -----------------------------------------------------------------------------------------------------------------------------------------
+  *TypeScript 
+ - TypeScript
+   + is language được phát triển với Microsoft. Vết code js nghiêm ngặt hơn
+   + Chủ yếu cung cấp tính năng nhập tĩnh (static optional), classes & interfaces, hỗ environment IDE phát hiện lỗi khi code
+   + 
+ - Moduls giúp tổ chức mã:
+   + internal Moduls: sd Namespace để thay thế
+   + External Moduls: sd để tải các file js từ bên ngoài. Nếu chỉ 1 file.js được sd thì các external moduls not relevant
+   
+ - Explain generics: Có thể tạo Component or func có thể sd nhiều types khác nhau (<T>(params: T) => ...)
+ - TypeScript benefits:
+   + Giúp cấu trúc code
+   + Sd hướng đối tượng dựa trên class
+   + Checking type
+   + kiểm tra lỗi thời gian biên dịch
+   
+ - Interface: 
+   + là cấu trúc ảo chỉ tồn tại trong context of TypeScript, Để type-checking
+  
+ - Interface difference Classes
+   + 
+
+  -----------------------------------------------------------------------------------------------------------------------------------------
+    *Web3:
+    - Web hướng tới k cần server quản lý mà sẽ quản lý phi tập chung, Nội dung dữ liệu của ai thì ng đó tự quản lý (như tài sản, đồ dùng)
+    - Web3 sd các phương pháp Cryptographic để bảo vệ sự phân quyền. Vì lợi ích và sd hệ sinh thái
+    - Web3.js tập hợp các Lib cho phép tương tác với node Ethereum local or remove bằng HTTP, IPC or WEbSoket
+
+    - Web3.eth: Để tương tác tới Blockchain Ethereum & Smart Contracts
+        + web3.eth.setProvide: 		- Để thay đổi nhà cung cấp cho Module nào đó
+        + web3.providers: 			- Chứa các Provider có sẵn
+        + web3.givenProvider: 		- Return Provider by environment(browser)
+        + web3.currentProvider: 	- Return Provider hiện tại
+        + new web3.BatchRequest: 	- Thực hiện hàng loạt Request
+        + web3.extend: 				- Để mở rộng các Module Web3
+        + web3.eth.defaultAccount: 	- dùng là Address default, nếu k có property "form" nào được chỉ định
+        + web3.eth.defaultBlock: 	- 
+        
+    - web3.eth.subscribe: Để đki các event in Blockchain
+    - web3.eth.Contract: Tương tác với SmartContract on ETH
+    - web3.eth.accounts: Chứa các chức năng để tạo TK ETH, và ký gdien và data
+    - web3.eth.personal: tương tác với các Account Ethereum nodes (Có thể gửi passWord - k call func qua Websoket or HTTP provider, vì passWord đc gửi ở dạng thuần túy)
+    - web3.eth.ens: tương tác với ENS (ENS - là hệ thống đặt tên phân tán, có thể mở rộng dựa trên ETH, Nhiệm vụ để lập bản đồ những cái tên có thể đọc)
+    - web3.eth.Iban: Chuyển đổi từ Address Ethereum sang IBAN & BBAN
+    - web3.eth.abi: Mã hóa và giải mã các parameters thành ABI(Giao diện nhị phân) cho các calls func tới EVM (máy ảo Ethereum)
+    - web3.*.net: tương tác với các thuộc tính mạng của node Ethereum
+    - Web3-shh: Dành cho giao thức P2P & Broadcast
+    - Web3-bzz: Lưu chữ giao thức phi tập trung
+    - web3-utils: Chứa chức năng helper cho Dapp developers
+
